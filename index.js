@@ -74,7 +74,12 @@ app.get("/", function (req, res) {
 app.get("/add-project", function (req, res) {
   isLogin = req.session.isLogin;
   let user = req.session.user;
-  handleLogin(req, res, isLogin);
+
+  if (!isLogin) {
+    req.flash("danger", "Silahkan Login terlebih dahulu");
+    return res.redirect("/login");
+  }
+
   res.render("add-project", { isLogin, user });
 });
 
@@ -142,7 +147,10 @@ app.get("/edit-project/:id", (req, res) => {
   isLogin = req.session.isLogin;
   let user = req.session.user;
 
-  handleLogin(req, res, isLogin);
+  if (!isLogin) {
+    req.flash("danger", "Silahkan Login terlebih dahulu");
+    return res.redirect("/login");
+  }
 
   let id = req.params.id;
 
@@ -317,7 +325,11 @@ app.get("/detail-project/:id", function (req, res) {
 // Route Delete Project
 app.get("/delete-project/:id", function (req, res) {
   isLogin = req.session.isLogin;
-  handleLogin(req, res, isLogin);
+
+  if (!isLogin) {
+    req.flash("danger", "Silahkan Login terlebih dahulu");
+    return res.redirect("/login");
+  }
 
   let id = req.params.id;
 
@@ -517,11 +529,4 @@ function getFullTime(timeInput) {
   // let fullTime = `${date} ${monthName[month]} ${year} ${hour}:${minute} WIB`;
   let fullTime = `${date} ${monthName[month]} ${year}`;
   return fullTime;
-}
-
-function handleLogin(req, res, masuk) {
-  if (!masuk) {
-    req.flash("danger", "Silahkan Login terlebih dahulu");
-    return res.redirect("/login");
-  }
 }
