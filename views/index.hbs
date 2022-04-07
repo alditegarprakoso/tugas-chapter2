@@ -1,0 +1,197 @@
+<html lang="en">
+  <head>
+    <link
+      href="/public/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/assets/css/style.css" />
+    <title>Chapter 2 - Home</title>
+  </head>
+  <body>
+    {{! Navbar }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/public/assets/img/logo.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="/">Home</a>
+            </li>
+            {{#if isLogin}}
+              <li class="nav-item">
+                <a class="nav-link" href="/add-project">Add Project</a>
+              </li>
+            {{/if}}
+          </ul>
+          <div>
+            {{#if isLogin}}
+              <span class="dropdown d-inline" style="margin-right: 20px;">
+                <a
+                  class="nav-link dropdown-toggle d-inline text-black"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Hallo,
+                  {{user.name}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </span>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{else}}
+              <a href="/register" style="margin-right: 20px;">Register</a>
+              <a href="/login" style="margin-right: 20px;">Login</a>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{! End Navbar }}
+    {{#if messages.success}}
+      <div class="alert alert-success" role="alert">
+        {{messages.success}}
+      </div>
+    {{/if}}
+    {{! Profile Section }}
+    <div class="container card shadow my-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        {{! Coloumn Left }}
+        <div class="col-md-7" style="padding-left: 100px;">
+          <h4 class="fw-bold mb-3">Hi Welcome to my hut</h4>
+          <p class="description-profile mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            aut sapiente minus sunt aperiam, architecto at fuga mollitia est
+            vel, veniam nesciunt! Aspernatur earum, recusandae alias nisi autem
+            ipsum accusantium corrupti quaerat accusamus adipisci, quisquam,
+            minus eveniet quod officia laborum rem quibusdam libero nulla
+            consequuntur praesentium beatae neque! Obcaecati, mollitia?
+          </p>
+
+          {{! Button Contact & Download CV }}
+          <div class="d-flex align-items-center mb-4">
+            <a href="#" class="btn btn-dark btn-contact">contact</a>
+            <a href="#" class="btn-download-cv">download CV
+              <i class="bx bx-download"></i>
+            </a>
+          </div>
+          {{! End Button Contact & Download CV }}
+
+          {{! Icon Sosmed }}
+          <div class="fs-1">
+            <a href="#"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-facebook-circle"></i></a>
+            <a href="#" style="color: black"><i class="bx bxl-twitter"></i></a>
+          </div>
+          {{! End Icon Sosmed }}
+        </div>
+        {{! End Coloumn Left }}
+
+        {{! Coloumn Right }}
+        <div class="col-md-5 p-5 d-flex justify-content-center">
+          <div class="card shadow" style="width: 16rem;">
+            <img
+              src="/public/assets/img/photo.jpeg"
+              class="card-img-top"
+              alt="Photo Profile"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold">Aldi Tegar Prakoso</h5>
+              <p class="card-text">Fullstack Developer</p>
+            </div>
+          </div>
+        </div>
+        {{! End Coloumn Right }}
+      </div>
+    </div>
+    {{! End Profile Section }}
+
+    {{! My Project Section }}
+    <div class="container-fluid project-section p-3">
+      <h3 class="py-5 text-center fw-bold">MY PROJECT</h3>
+      <div class="container py-4">
+        <div class="row">
+          {{! Project List }}
+          {{#if projects}}
+            {{#each projects}}
+              <div class="col-md-4 d-flex justify-content-center mb-5">
+                <div class="card shadow" style="width: 20rem;">
+                  <img
+                    src="/public/assets/img/{{this.image}}"
+                    class="card-img-top p-3 rounded"
+                    alt="thumbnail-photo"
+                  />
+                  <div class="card-body">
+                    <a href="/detail-project/{{this.id}}">
+                      <h6 class="fw-bold">{{this.project_name}}</h6>
+                    </a>
+                    <span class="text-secondary">durasi:
+                      {{this.duration}}
+                    </span>
+                    <p>{{this.name}}</p>
+                    <p class="card-text my-3">
+                      {{this.description}}
+                    </p>
+                    <div class="fs-2 mb-3">
+                      {{#each this.technologies}}
+                        <i class="bx bxl-{{this}}"></i>
+                      {{/each}}
+                    </div>
+
+                    {{#if this.isLogin}}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a
+                            href="/edit-project/{{this.id}}"
+                            class="btn btn-aksi"
+                          >edit</a>
+                        </div>
+                        <div class="col-md-6">
+                          <a
+                            href="/delete-project/{{this.id}}"
+                            class="btn btn-aksi"
+                          >delete</a>
+                        </div>
+                      </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <h3 class="text-center">Data project tidak ditemukan</h3>
+          {{/if}}
+
+          {{!  End Project List }}
+        </div>
+      </div>
+    </div>
+    {{! End My Project Section }}
+
+    <script
+      src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>

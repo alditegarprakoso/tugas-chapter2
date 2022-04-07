@@ -1,0 +1,146 @@
+<html lang="en">
+  <head>
+    <link
+      href="/public/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/assets/css/style.css" />
+    <title>Chapter 2 - Login</title>
+  </head>
+  <body>
+    {{! Navbar }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/public/assets/img/logo.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {{#if isLogin}}
+              <li class="nav-item">
+                <a class="nav-link" href="/add-project">Add Project</a>
+              </li>
+            {{/if}}
+          </ul>
+          <div>
+            {{#if isLogin}}
+              <span class="dropdown d-inline" style="margin-right: 20px;">
+                <a
+                  class="nav-link dropdown-toggle d-inline text-black"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Hallo,
+                  {{user.name}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </span>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{else}}
+              <a href="/register" style="margin-right: 20px;">Register</a>
+              <a
+                href="/login"
+                class="fw-bold"
+                style="margin-right: 20px;"
+              >Login</a>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{! End Navbar }}
+
+    {{! Form Login }}
+    <div class="container mx-auto my-5">
+      <div class="form-contact mx-auto">
+        <h3 class="fw-bold text-center mb-5">LOGIN TO YOUR ACCOUNT</h3>
+
+        {{#if messages.danger}}
+          <div class="alert alert-danger" role="alert">
+            {{messages.danger}}
+          </div>
+        {{/if}}
+
+        {{#if messages.warning}}
+          <div class="alert alert-warning" role="alert">
+            {{messages.warning}}
+          </div>
+        {{/if}}
+
+        {{#if messages.success}}
+          <div class="alert alert-success" role="alert">
+            {{messages.success}}
+          </div>
+        {{/if}}
+
+        <form action="/login" method="post">
+
+          <div class="mb-4">
+            <label for="email" class="form-label fw-bold">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control shadow"
+              required
+              autofocus
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="password" class="form-label fw-bold">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control shadow"
+              required
+            />
+          </div>
+
+          <div class="d-flex justify-content-end mb-5">
+            <button type="submit" class="btn btn-submit">
+              Login
+            </button>
+          </div>
+
+          <div class="text-center">
+            <a href="/register">Don't have an account ?
+              <strong>Register Now</strong></a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {{! Form Login }}
+
+    <script
+      src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="/public/assets/js/contact.js"></script>
+  </body>
+</html>

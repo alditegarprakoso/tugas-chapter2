@@ -1,0 +1,144 @@
+<html lang="en">
+  <head>
+    <link
+      href="/public/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/assets/css/style.css" />
+    <title>Chapter 2 - Contact</title>
+  </head>
+  <body>
+    {{! Navbar }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/public/assets/img/logo.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {{#if isLogin}}
+              <li class="nav-item">
+                <a class="nav-link" href="/add-project">Add Project</a>
+              </li>
+            {{/if}}
+          </ul>
+          <div>
+            {{#if isLogin}}
+              <span class="dropdown d-inline" style="margin-right: 20px;">
+                <a
+                  class="nav-link dropdown-toggle d-inline text-black"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Hallo,
+                  {{user.name}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </span>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{else}}
+              <a href="/register" style="margin-right: 20px;">Register</a>
+              <a href="/login" style="margin-right: 20px;">Login</a>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{! End Navbar }}
+
+    {{! Detail Project }}
+    {{#each project}}
+      <div class="container my-5">
+        <h3 class="text-center fw-bold py-3">{{this.project_name}}</h3>
+        <div class="row mt-5 d-flex justify-content-evenly">
+
+          {{! Kiri }}
+          <div class="col-md-7">
+            <img
+              src="/public/assets/img/{{this.image}}"
+              class="img-fluid"
+              alt="thumbnail-detail"
+            />
+          </div>
+          {{! End Kiri }}
+
+          {{! Kanan }}
+          <div class="col-md-4">
+            {{! Durasi }}
+            <div class="mb-5">
+              <p class="fw-bold">Duration</p>
+              <div class="d-flex align-items-center mb-4">
+                <i class="fw-bold fs-4 bx bx-calendar"></i>
+                <span class="px-3">{{this.start_detail}}
+                  -
+                  {{this.end_detail}}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="fw-bold fs-4 bx bx-hourglass"></i>
+                <span class="px-3">{{this.duration}}</span>
+              </div>
+            </div>
+            {{! End Durasi }}
+
+            {{! Techno }}
+            <div class="row">
+              <p class="fw-bold">Technologies</p>
+              {{#each this.technologies}}
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-4">
+                    <i class="fw-bold bx bxl-{{this}} fs-3"></i>
+                    <span class="px-3">
+                      {{technologies-condition this}}
+                    </span>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+            {{! End Techno }}
+
+          </div>
+          {{! End Kanan }}
+
+        </div>
+      </div>
+      {{! End Detail Project }}
+
+      {{! Description }}
+      <div class="container">
+        <p>
+          {{this.description}}
+        </p>
+      </div>
+    {{/each}}
+    {{! End Description }}
+
+    <script
+      src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="/public/assets/js/contact.js"></script>
+  </body>
+</html>

@@ -1,0 +1,249 @@
+<html lang="en">
+  <head>
+    <link
+      href="/public/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/assets/css/style.css" />
+    <title>Chapter 2 - Add Project</title>
+  </head>
+  <body>
+    {{! Navbar }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/public/assets/img/logo.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {{#if isLogin}}
+              <li class="nav-item">
+                <a class="nav-link fw-bold active" href="/add-project">Add
+                  Project</a>
+              </li>
+            {{/if}}
+          </ul>
+          <div>
+            {{#if isLogin}}
+              <span class="dropdown d-inline" style="margin-right: 20px;">
+                <a
+                  class="nav-link dropdown-toggle d-inline text-black"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Hallo,
+                  {{user.name}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </span>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{else}}
+              <a href="/login" style="margin-right: 20px;">Login</a>
+              <a href="/register" style="margin-right: 20px;">Register</a>
+              <a href="/contact" class="btn btn-contact-me">Contact Me</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{! End Navbar }}
+
+    {{! Form Add Project }}
+    <div class="add-project-section mx-auto my-5">
+      <h3 class="fw-bold text-center py-3">ADD MY PROJECT</h3>
+      <form action="/add-project" method="post" enctype="multipart/form-data">
+
+        {{! Project Name Input }}
+        <div class="mb-4">
+          <label for="projectName" class="form-label fw-bold">Project Name</label>
+          <input
+            type="text"
+            class="form-control shadow"
+            id="projectName"
+            name="projectName"
+          />
+        </div>
+        {{! End Project Name Input }}
+
+        {{! Start & End Date }}
+        <div class="mb-4">
+          <div class="row">
+
+            {{! Start Date }}
+            <div class="col-md-6">
+              <label for="startDate" class="form-label fw-bold">Start Date</label>
+              <input
+                type="date"
+                id="startDate"
+                name="startDate"
+                class="form-control shadow"
+              />
+            </div>
+            {{! End Start Date }}
+
+            {{! End Date }}
+            <div class="col-md-6">
+              <label for="endDate" class="form-label fw-bold">End Date</label>
+              <input
+                type="date"
+                id="endDate"
+                name="endDate"
+                class="form-control shadow"
+              />
+            </div>
+            {{! End EndDate }}
+          </div>
+        </div>
+        {{! End Start & End Date }}
+
+        {{! Description }}
+        <div class="mb-4">
+          <label
+            for="description"
+            class="form-label fw-bold"
+          >Description</label>
+          <textarea
+            name="description"
+            id="description"
+            class="form-control shadow"
+            rows="5"
+          ></textarea>
+        </div>
+        {{! End Description }}
+
+        {{! Technologies }}
+        <div class="mb-4">
+          <label
+            for="technologi"
+            class="form-label fw-bold"
+          >Technologies</label>
+          <div class="row">
+
+            {{! Technologi Checkbox }}
+            <div class="col-md-4">
+              {{! Node JS Checkbox }}
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="nodejs"
+                  name="nodejs"
+                  value="nodejs"
+                />
+                <label
+                  class="form-check-label text-secondary fw-bold"
+                  for="nodejs"
+                >Node JS</label>
+              </div>
+              {{! End Node JS Checkbox }}
+
+              {{! React JS Checkbox }}
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="reactjs"
+                  name="reactjs"
+                  value="react"
+                />
+                <label
+                  class="form-check-label text-secondary fw-bold"
+                  for="reactjs"
+                >React JS</label>
+              </div>
+              {{! End React JS Checkbox }}
+            </div>
+
+            <div class="col-md-4">
+              {{! JavaScript Checkbox }}
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="javascript"
+                  name="javascript"
+                  value="javascript"
+                />
+                <label
+                  class="form-check-label text-secondary fw-bold"
+                  for="javascript"
+                >JavaScript</label>
+              </div>
+              {{! End JavaScript Checkbox }}
+
+              {{! Tailwind Checkbox }}
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="tailwind"
+                  name="tailwind"
+                  value="tailwind-css"
+                />
+                <label
+                  class="form-check-label text-secondary fw-bold"
+                  for="tailwind"
+                >Tailwind CSS</label>
+              </div>
+              {{! End Tailwind Checkbox }}
+
+            </div>
+            {{! End Technologi Checkbox }}
+
+          </div>
+        </div>
+        {{! End Technologies }}
+
+        {{! Upload Image }}
+        <div class="mb-4">
+          <label for="image" class="form-label fw-bold">Upload Image</label>
+          <input
+            class="form-control shadow"
+            type="file"
+            id="image"
+            name="image"
+            onchange="previewImage();"
+          />
+          <img id="preview" />
+        </div>
+        {{! End Upload Image }}
+
+        {{! Button Sumbmit }}
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+        {{! End Button Sumbmit }}
+
+      </form>
+    </div>
+    {{! End Form Add Project }}
+
+    <script
+      src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="/public/assets/js/previewImage.js"></script>
+  </body>
+</html>

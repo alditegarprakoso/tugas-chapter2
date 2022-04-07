@@ -1,0 +1,93 @@
+/* Global */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+  background-color: #e3e7eb;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+textarea {
+  resize: none;
+}
+/* End Global */
+
+/* Navigasi */
+nav ul li {
+  padding-left: 20px;
+}
+
+/* Button Contact Me */
+.btn-contact-me {
+  background-color: black;
+  color: #fff;
+}
+.btn-contact-me:hover {
+  color: #fff;
+}
+
+/* End Navigasi */
+
+/* Profile Section */
+
+/* Description Profile */
+.description-profile {
+  text-align: justify;
+}
+
+/* Button Contact */
+.btn-contact {
+  padding: 2px 24px;
+  border-radius: 18px;
+}
+
+/* Button Download CV */
+.btn-download-cv {
+  margin-left: 20px;
+}
+
+/* End Profile Section */
+
+/* Project Section */
+.project-section {
+  background-color: #f8f8f8;
+}
+
+/* Button aksi edit & delete */
+.btn-aksi {
+  background-color: #000;
+  color: white;
+  width: 100%;
+  padding: 0;
+  border-radius: 14px;
+}
+.btn-aksi:hover {
+  color: white;
+}
+/* End Project Section */
+
+/* Add Project Section */
+.add-project-section {
+  width: 40%;
+}
+.btn-submit {
+  background-color: black;
+  color: white;
+  padding: 2px 18px;
+  border-radius: 16px;
+}
+
+.btn-submit:hover {
+  color: white;
+}
+/* End Add Project Section */
+
+/* Form Contact */
+.form-contact {
+  width: 40%;
+}
+/* Form Contact */
